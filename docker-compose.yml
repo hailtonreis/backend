@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_USER: hailton
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: igreja
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: igreja-app
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/igreja
+      SPRING_DATASOURCE_USERNAME: hailton
+      SPRING_DATASOURCE_PASSWORD: root
+
+volumes:
+  postgres_data:
