@@ -11,7 +11,7 @@ FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copia o JAR gerado (certifique-se que o .jar existe na pasta target)
-COPY target/*.jar app.jar
+COPY target/igreja-0.0.1-SNAPSHOT.jar app.jar
 
 # Exponha a porta do seu app (ex: Spring Boot usa por padrão a 8080)
 EXPOSE 8080
